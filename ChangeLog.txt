@@ -1,0 +1,112 @@
+CHANGE LOG FOR LIBDJVU
+======================
+
+Changes between 1.96 and 1.95
+-----------------------------
+o Improved Hanlin V5 support. You don't need to edit libdjvu.c
+  to select the model any more, only the Makefile.
+
+o Some optimizations for page rendering on Hanlin V5.
+
+Changes between 1.95 and 1.94
+-----------------------------
+o Described '5'/Long '5' (save/restore window) functions in
+  the Help screen.
+
+o Added support for "3-bit pixel per byte" screen mode.
+  (for Hanlin V5 and other needs). To compile libdjvu.so
+  for Hanlin V5 (3-bit "pixel per byte") you need to edit libdjvu.c
+  and #define EREADER_MODEL HANLIN_V5.
+
+Changes between 1.94 and 1.93
+-----------------------------
+o BugFix: page of "UNKNOWN" type should be render in COLOUR
+  rather than B&W.
+
+o Implemented "save/restore state" function. Pressing Long '7'
+  saves the current state and '5' restores it. The state includes
+  the page number, zoom factor, zoom factor increment, horizontal
+  and vertical shifts, window position, multicolumn mode switch,
+  window mark display switch.
+
+Changes between 1.93 and 1.92
+-----------------------------
+o Returning from "About..." window now uses cached view
+  of the page instead of re-generating it. The whole
+  content of "About..." is now generated inside libdjvu instead
+  of using the API. As a result, we have more space available
+  for extra info to put here in the future...
+
+Changes between 1.92 and 1.91
+-----------------------------
+o Made it possible to have valid DjVu files with *.exe.djvu filenames.
+
+o Added German localization.
+
+o Made debug logging unbuffered.
+
+o Changed the log location to "/home/log/libdjvulog.txt"
+
+o BugFix: Trying to access the page before the first one and then
+  go to menu and select "About..." --- returning from "About..." would
+  always show the bottom part of the current page instead of the top one.
+  Likewise selecting "Goto page..." from the menu and explicitly entering
+  the same page number as the current one (after hitting the non-existent
+  "page -1") would show the bottom part of the page. All these are fixed now.
+
+o BugFix: In LANDSCAPE mode the window marker was sometimes shown too bold
+  (4 pixels wide instead of 1) and sometimes not shown at all.
+
+
+Changes between 1.91 and 1.9
+----------------------------
+o Added support for executing programs named ".exe.djvu". This is useful
+  for renaming shared libraries in /home/.lib (e.g. to switch between
+  different versions of CoolReader libfb2.so)
+
+
+Changes between 1.9 and 1.8
+---------------------------
+o Made "force next/prev page" function ('6'/long '6') jump to the
+  next/prev column rather than next/prev page in multicolumn mode.
+
+
+Changes between 1.8 and 1.7
+---------------------------
+o Implemented Multicolumn mode of moving the window around the page.
+
+o The content of "About..." box localized in English, Russian, Ukrainian and
+  Spanish.
+
+o Various small optimizations and cleanups.
+
+
+Changes between 1.7 and 1.3
+---------------------------
+o Feature: show the previous window position when panning the window around
+  the page vertically. This can be enabled via menu and is helpful for sequential
+  reading of the page, i.e. helping the eye locate the next line to read quickly.
+
+o Bugfix: wrong page resolution/version could be shown for pages other than
+  the first one.
+
+o Allow larger than 100% values for vertical and horizontal shifts (can be useful
+  e.g. for two-column books with narrow columns and large white space in between).
+
+o Help screen (localized in English, Russian, Ukrainian and Spanish).
+
+o Slightly faster initialization and small optimizations in window movements around
+  the page.
+
+o Safer error handling of page decoding and other DjVu operations.
+
+o Long presses use the triple rather than double step.
+  Reporting of page decoding and rendering times via "About..." box to show the
+  significance of using async page readahead feature.
+
+o Change to Makefile --- allow development on x86_64 platform (previously was
+  restricted to i386 only).
+
+For more information please visit project's webpage:
+
+   http://sourceforge.net/projects/libdjvu/
