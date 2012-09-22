@@ -41,12 +41,12 @@ $ tar xzf djvulibre-3.5.19.tar.gz
 $ cd djvulibre-3.5.19
 ```
 
-** For i386:
+For i386:
 ```
 $ ./configure --disable-djview --without-qt --disable-xmltools --disable-i18n
 ```
 
-** For arm
+For arm
 ```
 $ ./configure --host=arm-linux --disable-djview --without-qt --disable-xmltools --disable-i18n
 ```
